@@ -20,15 +20,25 @@ from rest_framework import routers
 from organizations.views import OrganizationView
 from jobs.views import JobdescriptionView
 from base.views import CityViewSet
+from users.views import UserViewSet
+from users.views import UserViewSet
+
+from users.views import (
+    LoginView,
+    LogoutView,
+    RegisterView,
+)
 
 
 router=routers.DefaultRouter()
 router.register(r'organizations', OrganizationView)
 router.register(r'jobs', JobdescriptionView)
 router.register(r'cities', CityViewSet)
+router.register(r"users", UserViewSet)
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include(router.urls))
+    path('',include(router.urls)),
+    path('', include('users.urls')),
 ]
